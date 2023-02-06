@@ -17,6 +17,7 @@ import {makeBreadCrumbsFromCats} from '../../lib/breadcrumbs';
 import ProductShipping from '../../components/product/Shipping';
 import {IMenuItem} from '../../@types/components';
 import ProductsSliderByQuery from '../../components/ProductsSliderByQuery';
+import {_categoryTree} from "../../data/categoryTree";
 
 export default function ProductPage({data: {product, categoryParents, mainMenu, footerMenu}}: InferGetStaticPropsType<typeof getStaticProps>) {
 	const [resolvedParents, setResolvedParents] = useState(categoryParents);
@@ -163,7 +164,7 @@ const fetchData = async (slug: string) => {
 		categoryParents = await apiClient.catalog.getCategoryParents(categoryId);
 	}
 
-	const categoryTree = await apiClient.catalog.getCategoryTree({menu: 'category'});
+	const categoryTree = _categoryTree;
 	const menus = makeAllMenus({categoryTree});
 
 	return {

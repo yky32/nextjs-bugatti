@@ -3,6 +3,7 @@ import MainLayout from '../layouts/Main';
 import {GetServerSideProps} from 'next';
 import {apiClient} from '../lib/api';
 import {makeAllMenus} from '../lib/menu';
+import {_categoryTree} from '../data/categoryTree';
 
 export default function ShippingPage({mainMenu, footerMenu}: IAboutPageProps) {
 	return (
@@ -24,7 +25,7 @@ export default function ShippingPage({mainMenu, footerMenu}: IAboutPageProps) {
 }
 
 export const getServerSideProps: GetServerSideProps<IAboutPageProps> = async () => {
-	const categoryTree = await apiClient.catalog.getCategoryTree({menu: 'category'});
+	const categoryTree = _categoryTree;
 	const {mainMenu, footerMenu} = makeAllMenus({categoryTree});
 
 	return {

@@ -13,6 +13,7 @@ import {GetServerSideProps} from 'next';
 import CartLoader from '../components/cart/CartLoader';
 import Link from 'next/link';
 import {calcTotal, calcTotalPrice} from '../lib/calculator';
+import {_categoryTree} from '../data/categoryTree';
 
 export default function CartPage({mainMenu, footerMenu}: ICartPageProps) {
 	const dispatch = useAppDispatch();
@@ -80,7 +81,7 @@ export default function CartPage({mainMenu, footerMenu}: ICartPageProps) {
 }
 
 export const getServerSideProps: GetServerSideProps<ICartPageProps> = async () => {
-	const categoryTree = await apiClient.catalog.getCategoryTree({menu: 'category'});
+	const categoryTree = _categoryTree;
 	const {mainMenu, footerMenu} = makeAllMenus({categoryTree});
 
 	return {

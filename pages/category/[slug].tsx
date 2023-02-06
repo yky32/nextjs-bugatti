@@ -23,6 +23,7 @@ import CategorySidebar from '../../components/category/Sidebar';
 import FiltersModal from '../../components/category/FiltersModal';
 import CategoryControls from '../../components/category/Controls';
 import {RootState} from '../../redux/store';
+import {_categoryTree} from "../../data/categoryTree";
 const FilterForm = dynamic(() => import('../../components/FilterForm'), {ssr: false});
 
 export default function CategoryPage({data}: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -152,7 +153,7 @@ const fetchData = async (slug: string, params: TQuery) => {
 	});
 
 	const {collection, filteredQuery: productsQuery} = await fetchCollection(category.category_id, params);
-	const categoryTree = await apiClient.catalog.getCategoryTree({menu: 'category'});
+	const categoryTree = _categoryTree;
 	const menus = makeAllMenus({categoryTree, activeCategoryId: category.category_id});
 
 	const out = {

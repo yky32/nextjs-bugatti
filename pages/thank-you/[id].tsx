@@ -40,7 +40,7 @@ export default function ThankYouPage({mainMenu, footerMenu}: IProps) {
 }
 
 export const getServerSideProps: GetServerSideProps<IProps> = async () => {
-	const categoryTree = await apiClient.catalog.getCategoryTree({menu: 'category'});
+	const categoryTree = _categoryTree;
 	const {mainMenu, footerMenu} = makeAllMenus({categoryTree});
 
 	return {
