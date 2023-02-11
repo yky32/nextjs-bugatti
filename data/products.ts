@@ -1,7 +1,8 @@
 import {IProduct} from '../types/catalog/product';
 import {IPagination} from 'boundless-api-client/dist/types/common';
-import {TLabelIcon} from '../types/catalog/label';
-import {TPublishingStatus} from '../types/common';
+import {TPublishingStatus} from '../@types/common';
+import {TLabelIcon} from 'boundless-api-client';
+
 
 
 export const _productsWithPagination: {

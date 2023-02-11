@@ -1,16 +1,16 @@
-import { ICustomer } from './customer';
+import {ICustomer} from './customer';
 export declare enum TCheckoutCustomerName {
-    first = "first",
-    last = "last"
+    first = 'first',
+    last = 'last'
 }
 export declare enum TCheckoutAccountPolicy {
-    guestAndLogin = "guest-and-login",
-    guest = "guest",
-    loginRequired = "login-required"
+    guestAndLogin = 'guest-and-login',
+    guest = 'guest',
+    loginRequired = 'login-required'
 }
 export declare enum TCheckoutFieldStatus {
-    optional = "optional",
-    required = "required"
+    optional = 'optional',
+    required = 'required'
 }
 export interface ICheckoutSettingsContactFields {
     email: {
