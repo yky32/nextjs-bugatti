@@ -10,7 +10,6 @@ import bgPortraitImg from '../assets/cover-bg-portrait.jpg';
 import CoverTextInCenter from '../components/CoverTextInCenter';
 import ProductsSliderByQuery from '../components/ProductsSliderByQuery';
 import {_categoryTree} from '../data/categoryTree';
-import {_products} from '../data/products';
 
 export default function IndexPage({products, mainMenu, footerMenu}: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	return (
@@ -45,7 +44,8 @@ export default function IndexPage({products, mainMenu, footerMenu}: InferGetServ
 
 export const getServerSideProps: GetServerSideProps<IIndexPageProps> = async () => {
 	const categoryTree = _categoryTree;
-	const products = _products;
+	const {products} = await apiClient.catalog.getProducts({collection: ['main-page'], sort: 'in_collection'});
+
 
 	const menus = makeAllMenus({categoryTree});
 

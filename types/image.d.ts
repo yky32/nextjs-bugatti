@@ -1,8 +1,12 @@
+import {TLabelIcon} from './catalog/label';
+
 export interface IImage {
     image_id: number;
     path: string;
     is_default: boolean;
     description: string | null;
+		width: number;
+		height: number;
     alt: string | null;
     tags: IImageTag[] | null;
 }
@@ -36,6 +40,7 @@ export interface IProductImage {
 export interface IImageTag {
     image_tag_id: number;
     title: string;
+		icon: TLabelIcon | null;
 }
 export declare enum TThumbMode {
     scale = "scale"

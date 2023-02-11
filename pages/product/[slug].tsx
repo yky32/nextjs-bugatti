@@ -17,7 +17,8 @@ import {makeBreadCrumbsFromCats} from '../../lib/breadcrumbs';
 import ProductShipping from '../../components/product/Shipping';
 import {IMenuItem} from '../../@types/components';
 import ProductsSliderByQuery from '../../components/ProductsSliderByQuery';
-import {_categoryTree} from "../../data/categoryTree";
+import {_categoryTree} from '../../data/categoryTree';
+import {_productsWithPagination} from '../../data/products';
 
 export default function ProductPage({data: {product, categoryParents, mainMenu, footerMenu}}: InferGetStaticPropsType<typeof getStaticProps>) {
 	const [resolvedParents, setResolvedParents] = useState(categoryParents);
@@ -104,10 +105,10 @@ export default function ProductPage({data: {product, categoryParents, mainMenu, 
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const {pagination, products} = await apiClient.catalog.getProducts({'per-page': 100});
+	const {pagination, products} = _productsWithPagination;
 	if (pagination.pageCount > 1) {
 		for (let page = 2; page <= pagination.pageCount; page++) {
-			const {products: newProducts} = await apiClient.catalog.getProducts({'per-page': 100, page});
+			const {products: newProducts} = _productsWithPagination;
 			products.push(...newProducts);
 		}
 	}

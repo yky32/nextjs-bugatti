@@ -1,7 +1,6 @@
 import {IMenuItem} from '../@types/components';
 import MainLayout from '../layouts/Main';
 import {GetServerSideProps} from 'next';
-import {apiClient} from '../lib/api';
 import {makeAllMenus} from '../lib/menu';
 import {_categoryTree} from '../data/categoryTree';
 

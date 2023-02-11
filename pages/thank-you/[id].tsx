@@ -6,6 +6,7 @@ import {GetServerSideProps} from 'next';
 import {makeAllMenus} from '../../lib/menu';
 import {IMenuItem} from '../../@types/components';
 import {useCallback, useRef} from 'react';
+import {_categoryTree} from '../../data/categoryTree';
 
 export default function ThankYouPage({mainMenu, footerMenu}: IProps) {
 	const router = useRouter();

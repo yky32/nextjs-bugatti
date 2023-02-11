@@ -114,15 +114,15 @@ export interface IManufacturerText {
     url_key: string | null;
     description: string | null;
 }
-export interface IProductCommodityGroup {
-    group_id: number;
-    created_at: string;
-    deleted_at: string | null;
-    is_default: boolean;
-    physical_products: boolean;
-    title: string;
-    trackInventory: boolean;
-}
+// export interface IProductCommodityGroup {
+//     group_id: number;
+//     created_at: string;
+//     deleted_at: string | null;
+//     is_default: boolean;
+//     physical_products: boolean;
+//     title: string;
+//     trackInventory: boolean;
+// }
 export interface IItemSeo {
     compiledTitle: null | string;
     compiledMetaDescription: null | string;

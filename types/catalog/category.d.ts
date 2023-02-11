@@ -1,7 +1,7 @@
-import { TPublishingStatus } from '../common';
-import { IImageItem } from '../image';
-import { IFilter } from './filter';
-import { IItemSeo } from './product';
+import {TPublishingStatus} from '../common';
+import {IImageItem} from '../image';
+import {IFilter} from './filter';
+import {IItemSeo} from './product';
 export interface ICategory {
     category_id: number;
     parent_id: number | null;

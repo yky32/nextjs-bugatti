@@ -12,7 +12,7 @@ import {getCategoryMetaData} from '../../lib/meta';
 import {makeAllMenus} from '../../lib/menu';
 import {IMenuItem} from '../../@types/components';
 import {makeBreadCrumbsFromCats} from '../../lib/breadcrumbs';
-import {IProduct, ICategoryItem, IPagination} from 'boundless-api-client';
+import {ICategoryItem, IPagination, IProduct} from 'boundless-api-client';
 import {TQuery} from '../../@types/common';
 
 import MainLayout from '../../layouts/Main';
@@ -23,7 +23,8 @@ import CategorySidebar from '../../components/category/Sidebar';
 import FiltersModal from '../../components/category/FiltersModal';
 import CategoryControls from '../../components/category/Controls';
 import {RootState} from '../../redux/store';
-import {_categoryTree} from "../../data/categoryTree";
+import {_categoryTree} from '../../data/categoryTree';
+
 const FilterForm = dynamic(() => import('../../components/FilterForm'), {ssr: false});
 
 export default function CategoryPage({data}: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -53,7 +54,7 @@ export default function CategoryPage({data}: InferGetServerSidePropsType<typeof 
 	}, [data]);
 
 	const breadcrumbItems = useMemo(() =>
-		makeBreadCrumbsFromCats(category.parents!, ({category_id}) => ({isActive: category_id === category.category_id}))
+			makeBreadCrumbsFromCats(category.parents!, ({category_id}) => ({isActive: category_id === category.category_id}))
 		, [category.parents, category.category_id]);
 
 	return (
@@ -66,27 +67,29 @@ export default function CategoryPage({data}: InferGetServerSidePropsType<typeof 
 			<div className='container'>
 				<div className='row'>
 					<div className='category-sidebar__wrapper col-md-4 col-lg-3'>
-						<CategorySidebar category={category} />
+						<CategorySidebar category={category}/>
 						<FilterForm filterFields={category.filter!.fields}
-							queryParams={productsQuery}
-							categoryId={category.category_id}
-							onSearch={onCollectionChange}
-							idsPrefix='desk_'
+												queryParams={productsQuery}
+												categoryId={category.category_id}
+												onSearch={onCollectionChange}
+												idsPrefix='desk_'
 						/>
 					</div>
 					<div className='col-md-8 col-lg-9'>
-						<BreadCrumbs items={breadcrumbItems} />
+						<BreadCrumbs items={breadcrumbItems}/>
 						<h1 className='page-heading page-heading_h1  page-heading_m-h1'>{category.text?.title}</h1>
 						{category.text?.description_top &&
-							<div className={'mb-3'} dangerouslySetInnerHTML={{__html: category.text.description_top}} />
+							<div className={'mb-3'} dangerouslySetInnerHTML={{__html: category.text.description_top}}/>
 						}
 
 						{collection && <>
-							<CategoryControls params={productsQuery} onSort={onCollectionChange} onMobileShow={() => setShowModal(true)}/>
-							<ProductsList products={collection.products} query={productsQuery} categoryId={category.category_id} />
-							<Pagination pagination={collection.pagination} params={productsQuery} onChange={onCollectionChange} />
+							<CategoryControls params={productsQuery} onSort={onCollectionChange}
+																onMobileShow={() => setShowModal(true)}/>
+							<ProductsList products={collection.products} query={productsQuery} categoryId={category.category_id}/>
+							<Pagination pagination={collection.pagination} params={productsQuery} onChange={onCollectionChange}/>
 						</>}
-						{category.text?.description_bottom && <div dangerouslySetInnerHTML={{__html: category.text.description_bottom}} />}
+						{category.text?.description_bottom &&
+							<div dangerouslySetInnerHTML={{__html: category.text.description_bottom}}/>}
 					</div>
 				</div>
 			</div>
@@ -94,12 +97,12 @@ export default function CategoryPage({data}: InferGetServerSidePropsType<typeof 
 				show={showModal}
 				setShow={setShowModal}
 			>
-				<CategorySidebar category={category} />
+				<CategorySidebar category={category}/>
 				<FilterForm filterFields={category.filter!.fields}
-					queryParams={productsQuery}
-					categoryId={category.category_id}
-					onSearch={onCollectionChange}
-					idsPrefix='mobile_'
+										queryParams={productsQuery}
+										categoryId={category.category_id}
+										onSearch={onCollectionChange}
+										idsPrefix='mobile_'
 				/>
 			</FiltersModal>
 		</MainLayout>
@@ -196,7 +199,7 @@ interface ICategoryPageData {
 		products: IProduct[];
 		pagination: IPagination;
 	},
-	productsQuery: {[key: string]: any},
+	productsQuery: { [key: string]: any },
 	mainMenu: IMenuItem[];
 	footerMenu: IMenuItem[];
 }

@@ -1,10 +1,10 @@
 export declare enum TLabelIcon {
-    star = "star",
-    flag = "flag",
-    fire = "fire",
-    ok = "ok",
-    tag = "tag",
-    heart = "heart"
+    star = 'star',
+    flag = 'flag',
+    fire = 'fire',
+    ok = 'ok',
+    tag = 'tag',
+    heart = 'heart'
 }
 export interface ILabel {
     label_id: number;
